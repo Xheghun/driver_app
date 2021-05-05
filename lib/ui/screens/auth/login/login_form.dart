@@ -15,6 +15,7 @@ class LoginPage extends StatelessWidget {
           children: [
             ElevatedTextField(
               hintText: "Email",
+              keyboardType: TextInputType.emailAddress,
             ),
             ElevatedTextField(
               hintText: "Password",

@@ -1,4 +1,5 @@
 import 'package:driver_app/app/res/theme.dart';
+import 'package:driver_app/app/route_generator.dart';
 import 'package:flutter/material.dart';
 
 class DriverApp extends StatelessWidget {
@@ -7,7 +8,7 @@ class DriverApp extends StatelessWidget {
     return MaterialApp(
       title: 'Driver App',
       theme: AppTheme.normal(),
-      
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'package:driver_app/app/res/colors.dart';
-import 'package:driver_app/app/res/style.dart';
 import 'package:driver_app/ui/widget/buttons/primary_button.dart';
 import 'package:driver_app/ui/widget/layout/base_layout.dart';
 import 'package:driver_app/ui/widget/text/elevated_textfield.dart';

@@ -3,6 +3,7 @@ import 'package:driver_app/ui/screens/auth/login/login_form.dart';
 import 'package:driver_app/ui/screens/auth/signup/signup_page.dart';
 import 'package:driver_app/ui/widget/tab_item.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AuthFormHolder extends StatefulWidget {
   static const routeName = "/routeName";
@@ -34,12 +35,19 @@ class _AuthFormHolderState extends State<AuthFormHolder>
                   border: Border(
                 top: BorderSide(
                   color: Colors.black12,
-                  width: 0.5,
+                  width: 1,
                 ),
               )),
               child: TabBar(
                 tabs: tabs,
                 controller: _tabController,
+                unselectedLabelStyle: GoogleFonts.roboto(
+                  color: Colors.black12,
+                ),
+                labelStyle: GoogleFonts.roboto(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
                 indicatorWeight: 4.0,
                 indicatorColor: colorPrimary,
               ),

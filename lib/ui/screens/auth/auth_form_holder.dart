@@ -1,3 +1,5 @@
+import 'package:driver_app/ui/screens/auth/login/login_form.dart';
+import 'package:driver_app/ui/screens/auth/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthFormHolder extends StatefulWidget {
@@ -7,23 +9,36 @@ class AuthFormHolder extends StatefulWidget {
 }
 
 class _AuthFormHolderState extends State<AuthFormHolder>
-    with TickerProviderStateMixin {
-  TabController _controller;
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
   var tabs = [Text("SIGN IN"), Text("SIGN UP")];
 
   @override
   void initState() {
-    _controller = TabController(length: tabs.length, vsync: this);
+    _tabController = TabController(length: tabs.length, vsync: this);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    var tabPages = [LoginPage(), SignUpPage()];
     return Scaffold(
-      body: Column(
-        children: [
-          TabBar(tabs: tabs),
-        ],
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TabBar(
+              tabs: tabs,
+              controller: _tabController,
+            ),
+            Expanded(
+              child: TabBarView(
+                children: tabPages,
+                controller: _tabController,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

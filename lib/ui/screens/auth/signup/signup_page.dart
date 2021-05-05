@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return BaseLayout(
       backgroundColor: Colors.black.withOpacity(0.016),
       body: SingleChildScrollView(

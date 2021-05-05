@@ -1,5 +1,6 @@
 import 'package:driver_app/app/res/theme.dart';
 import 'package:driver_app/app/route_generator.dart';
+import 'package:driver_app/ui/screens/auth/auth_form_holder.dart';
 import 'package:flutter/material.dart';
 
 class DriverApp extends StatelessWidget {
@@ -9,6 +10,7 @@ class DriverApp extends StatelessWidget {
       title: 'Driver App',
       theme: AppTheme.normal(),
       onGenerateRoute: RouteGenerator.generateRoute,
+      initialRoute: AuthFormHolder.routeName,
     );
   }
 }

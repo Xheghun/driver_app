@@ -1,5 +1,7 @@
+import 'package:driver_app/app/res/colors.dart';
 import 'package:driver_app/ui/screens/auth/login/login_form.dart';
 import 'package:driver_app/ui/screens/auth/signup/signup_page.dart';
+import 'package:driver_app/ui/widget/tab_item.dart';
 import 'package:flutter/material.dart';
 
 class AuthFormHolder extends StatefulWidget {
@@ -11,7 +13,7 @@ class AuthFormHolder extends StatefulWidget {
 class _AuthFormHolderState extends State<AuthFormHolder>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  var tabs = [Text("SIGN IN"), Text("SIGN UP")];
+  var tabs = [TabItem(title: "SIGN IN"), TabItem(title: "SIGN UP")];
 
   @override
   void initState() {
@@ -27,9 +29,20 @@ class _AuthFormHolderState extends State<AuthFormHolder>
       body: SafeArea(
         child: Column(
           children: [
-            TabBar(
-              tabs: tabs,
-              controller: _tabController,
+            Container(
+              decoration: BoxDecoration(
+                  border: Border(
+                top: BorderSide(
+                  color: Colors.black12,
+                  width: 0.5,
+                ),
+              )),
+              child: TabBar(
+                tabs: tabs,
+                controller: _tabController,
+                indicatorWeight: 4.0,
+                indicatorColor: colorPrimary,
+              ),
             ),
             Expanded(
               child: TabBarView(

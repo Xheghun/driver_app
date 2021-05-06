@@ -6,10 +6,13 @@ import 'package:driver_app/core/failure/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:driver_app/core/entities/user/user_data.dart';
 import 'package:driver_app/core/repository/auth/auth_repo.dart';
+import 'package:meta/meta.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthWebService authWebService;
-  UserProfileWebService userProfileWebService;
+  final AuthWebService authWebService;
+  final UserProfileWebService userProfileWebService;
+
+  AuthRepositoryImpl({@required this.authWebService,@required this.userProfileWebService);
 
   @override
   Future<Either<Failure, bool>> createUser(AuthCredentials credentials) async {

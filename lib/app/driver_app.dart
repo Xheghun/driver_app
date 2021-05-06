@@ -1,12 +1,37 @@
+import 'package:driver_app/app/base_viewmodel/base_viewmodel.dart';
 import 'package:driver_app/app/res/theme.dart';
 import 'package:driver_app/app/route_generator.dart';
 import 'package:driver_app/ui/screens/auth/auth_form_holder.dart';
+import 'package:driver_app/ui/screens/main/main_screeen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class DriverApp extends StatelessWidget {
+class DriverApp extends StatefulWidget {
+  @override
+  _DriverAppState createState() => _DriverAppState();
+}
+
+class _DriverAppState extends State<DriverApp> {
+  void setInitialRoute() async {
+    var baseModel = Provider.of<BaseViewModel>(context);
+    if (await baseModel.isLoggedIn()) {
+      setState(() {
+        _initialRoute = MainScreen.routeName;
+      });
+    }
+  }
+
+  String _initialRoute = AuthFormHolder.routeName;
+
+  @override
+  void initState() {
+    setInitialRoute();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics();
@@ -24,11 +49,11 @@ class DriverApp extends StatelessWidget {
             ],
             theme: AppTheme.normal(),
             onGenerateRoute: RouteGenerator.generateRoute,
-            initialRoute: AuthFormHolder.routeName,
+            initialRoute: _initialRoute,
           );
         }
 
-        if(snapshot.hasError) {
+        if (snapshot.hasError) {
           //show error
         }
 

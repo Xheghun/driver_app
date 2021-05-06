@@ -15,8 +15,8 @@ class LoadingView extends StatelessWidget {
       color: Colors.black.withOpacity(0.2),
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: 1.2,
-          sigmaY: 1.2,
+          sigmaX: 2.5,
+          sigmaY: 2.5,
         ),
         child: Center(
           child: Container(

@@ -1,4 +1,5 @@
 import 'package:driver_app/app/base_viewmodel/base_viewmodel.dart';
+import 'package:driver_app/app/base_viewmodel/view_state.dart';
 import 'package:driver_app/app/helpers/validators/string_validator.dart';
 import 'package:driver_app/core/entities/auth/auth_credentials.dart';
 import 'package:driver_app/core/use_case/auth/auth_usecase.dart';
@@ -40,13 +41,14 @@ class SignUpViewModel extends BaseViewModel {
   }
 
   void _signUp(BuildContext context) async {
+    changeState(ViewState.Busy);
     var credentials = AuthCredentials(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
         fullname: fullnameController.text.trim());
 
     var result = await authUseCase.createUser(credentials);
-
+    changeState(ViewState.Idle);
     result.fold((failure) {
       //error
       showFlushBar(context, title: "SignUp Error", message: failure.message);

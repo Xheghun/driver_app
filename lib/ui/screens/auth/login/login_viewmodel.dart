@@ -12,8 +12,8 @@ import 'package:meta/meta.dart';
 class LoginViewModel extends BaseViewModel {
   final AuthUseCase authUseCase;
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   LoginViewModel({@required this.authUseCase});
 
@@ -22,10 +22,10 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void validateInput(BuildContext context) {
-    if (!isTextEmail(_emailController.text.trim())) {
+    if (!isTextEmail(emailController.text.trim())) {
       _message(context, "please provide a valid email");
       return;
-    } else if (_passwordController.text.trim().isEmpty) {
+    } else if (passwordController.text.trim().isEmpty) {
       _message(context, "password is empty");
       return;
     }
@@ -35,17 +35,21 @@ class LoginViewModel extends BaseViewModel {
   void _login(BuildContext context) async {
     changeState(ViewState.Busy);
     var credentials = AuthCredentials(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
 
     var result = await authUseCase.login(credentials);
     changeState(ViewState.Idle);
     result.fold((failure) {
       //error
       showFlushBar(context, title: "Login Error", message: failure.message);
-    }, (r) {
+    }, (success) {
       //success
-      Navigator.pushNamed(context, MainScreen.routeName);
+      if (success)
+        Navigator.pushNamed(context, MainScreen.routeName);
+      else
+        showFlushBar(context,
+            title: "Login Error", message: "something went wrong");
     });
   }
 }

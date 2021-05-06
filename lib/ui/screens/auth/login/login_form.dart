@@ -22,11 +22,13 @@ class LoginPage extends StatelessWidget {
                 children: [
                   ElevatedTextField(
                     hintText: "Email",
+                    controller: model.emailController,
                     keyboardType: TextInputType.emailAddress,
                   ),
                   ElevatedTextField(
                     hintText: "Password",
                     obscureText: true,
+                    controller: model.passwordController,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15),

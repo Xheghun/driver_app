@@ -1,4 +1,5 @@
 import 'package:driver_app/app/base_viewmodel/base_viewmodel.dart';
+import 'package:driver_app/app/helpers/validators/string_validator.dart';
 import 'package:driver_app/core/entities/auth/auth_credentials.dart';
 import 'package:driver_app/core/use_case/auth/auth_usecase.dart';
 import 'package:driver_app/ui/helpers/notifier.dart';
@@ -15,7 +16,25 @@ class SignUpViewModel extends BaseViewModel {
 
   SignUpViewModel({@required this.authUseCase});
 
-  void login(BuildContext context) async {
+  void _message(BuildContext context, String text) {
+    showFlushBar(context, title: "Validation Error", message: text);
+  }
+
+  void validateInput(BuildContext context) {
+    if (!isTextEmail(_emailController.text.trim())) {
+      _message(context, "please provide a valid email");
+      return;
+    } else if (_passwordController.text.trim().isEmpty) {
+      _message(context, "password is empty");
+      return;
+    } else if (isTextNumeric(_fullnameController.text.trim())) {
+      _message(context, "fullname can't contain only numbers");
+      return;
+    }
+    signUp(context);
+  }
+
+  void signUp(BuildContext context) async {
     var credentials = AuthCredentials(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),

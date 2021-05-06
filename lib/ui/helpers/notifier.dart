@@ -1,8 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void showFlushBar(BuildContext context,
-    {String title, String message, Color backgroundColor}) {
+    {String title, String message, Color backgroundColor = Colors.red}) {
   Flushbar(
     title: title,
     message: message,

@@ -5,6 +5,7 @@ import 'package:driver_app/core/entities/auth/auth_credentials.dart';
 import 'package:driver_app/core/use_case/auth/auth_usecase.dart';
 import 'package:driver_app/ui/helpers/notifier.dart';
 import 'package:driver_app/ui/screens/main/main_screeen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
@@ -16,14 +17,16 @@ class LoginViewModel extends BaseViewModel {
 
   LoginViewModel({@required this.authUseCase});
 
+  void _message(BuildContext context, String text) {
+    showFlushBar(context, title: "Validation Error", message: text);
+  }
+
   void validateInput(BuildContext context) {
     if (!isTextEmail(_emailController.text.trim())) {
-      showFlushBar(context,
-          title: "Validation Error", message: "please provide a valid email");
+      _message(context, "please provide a valid email");
       return;
     } else if (_passwordController.text.trim().isEmpty) {
-      showFlushBar(context,
-          title: "Validation Error", message: "password is empty");
+      _message(context, "password is empty");
       return;
     }
     login(context);

@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:driver_app/app/res/colors.dart';
 import 'package:driver_app/app/res/style.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

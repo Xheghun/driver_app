@@ -1,4 +1,3 @@
-import 'package:driver_app/app/locator.dart';
 import 'package:driver_app/ui/screens/auth/login/login_viewmodel.dart';
 import 'package:driver_app/ui/widget/buttons/primary_button.dart';
 import 'package:driver_app/ui/widget/layout/base_layout.dart';

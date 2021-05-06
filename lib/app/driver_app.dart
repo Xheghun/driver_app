@@ -15,21 +15,13 @@ class DriverApp extends StatefulWidget {
 }
 
 class _DriverAppState extends State<DriverApp> {
-  void setInitialRoute() async {
+  Future<String> setInitialRoute() async {
     var baseModel = Provider.of<BaseViewModel>(context);
     if (await baseModel.isLoggedIn()) {
-      setState(() {
-        _initialRoute = MainScreen.routeName;
-      });
+      return MainScreen.routeName;
+    } else {
+      return AuthFormHolder.routeName;
     }
-  }
-
-  String _initialRoute = AuthFormHolder.routeName;
-
-  @override
-  void initState() {
-    setInitialRoute();
-    super.initState();
   }
 
   @override
@@ -42,22 +34,36 @@ class _DriverAppState extends State<DriverApp> {
       future: _firebaseFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            title: 'Driver App',
-            navigatorObservers: [
-              FirebaseAnalyticsObserver(analytics: firebaseAnalytics)
-            ],
-            theme: AppTheme.normal(),
-            onGenerateRoute: RouteGenerator.generateRoute,
-            initialRoute: _initialRoute,
+          return FutureBuilder(
+            future: setInitialRoute(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done)
+                return MaterialApp(
+                  title: 'Driver App',
+                  navigatorObservers: [
+                    FirebaseAnalyticsObserver(analytics: firebaseAnalytics)
+                  ],
+                  theme: AppTheme.normal(),
+                  onGenerateRoute: RouteGenerator.generateRoute,
+                  initialRoute: snapshot.data,
+                );
+
+              return Container();
+            },
           );
         }
 
         if (snapshot.hasError) {
           //show error
+          return Center(
+            child: Text("Failed to init firebase"),
+          );
         }
 
         //show loading
+        return Center(
+          child: CircularProgressIndicator(),
+        );
       },
     );
   }

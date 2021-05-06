@@ -14,6 +14,9 @@ class UserProfileWebServiceImpl implements UserProfileWebService {
   @override
   Future updateProfile(UserData userData) async {
     var databaseReference = firebaseDatabase.reference();
-    databaseReference.child("users").child(userData.userId).set(userData);
+    databaseReference
+        .child("users")
+        .child(userData.userId)
+        .set(userData.toJson());
   }
 }

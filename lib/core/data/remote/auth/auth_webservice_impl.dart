@@ -30,7 +30,7 @@ class AuthWebServiceImpl implements AuthWebService {
 
   @override
   Future<bool> isUserAuthenticated() async {
-    return firebaseAuth.currentUser == null;
+    return firebaseAuth.currentUser != null;
   }
 
   @override

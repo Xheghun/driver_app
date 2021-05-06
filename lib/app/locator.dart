@@ -14,7 +14,7 @@ import 'package:logger/logger.dart';
 var locator = GetIt.instance;
 
 void setupLocator() {
-//viewmodel
+  //viewmodel
   locator
     ..registerFactory(() => LoginViewModel(authUseCase: locator()))
     ..registerFactory(() => SignUpViewModel(authUseCase: locator()))

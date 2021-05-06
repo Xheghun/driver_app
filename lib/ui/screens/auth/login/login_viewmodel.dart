@@ -4,12 +4,15 @@ import 'package:driver_app/core/use_case/auth/auth_usecase.dart';
 import 'package:driver_app/ui/helpers/notifier.dart';
 import 'package:driver_app/ui/screens/main/main_screeen.dart';
 import 'package:flutter/widgets.dart';
+import 'package:meta/meta.dart';
 
 class LoginViewModel extends BaseViewModel {
-  AuthUseCase authUseCase;
+  final AuthUseCase authUseCase;
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
+  LoginViewModel({@required this.authUseCase});
 
   void login(BuildContext context) async {
     var credentials = AuthCredentials(

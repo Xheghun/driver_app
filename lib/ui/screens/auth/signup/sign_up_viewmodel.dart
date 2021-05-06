@@ -36,10 +36,10 @@ class SignUpViewModel extends BaseViewModel {
       _message(context, "fullname can't contain only numbers");
       return;
     }
-    signUp(context);
+    _signUp(context);
   }
 
-  void signUp(BuildContext context) async {
+  void _signUp(BuildContext context) async {
     var credentials = AuthCredentials(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),

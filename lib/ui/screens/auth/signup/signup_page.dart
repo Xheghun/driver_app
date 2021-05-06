@@ -40,6 +40,7 @@ class SignUpPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     child: PrimaryButton(
                       text: "CONTINUE",
+                      onPressed: () => model.validateInput(context),
                     ),
                   )
                 ],

@@ -12,7 +12,8 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthWebService authWebService;
   final UserProfileWebService userProfileWebService;
 
-  AuthRepositoryImpl({@required this.authWebService,@required this.userProfileWebService);
+  AuthRepositoryImpl(
+      {@required this.authWebService, @required this.userProfileWebService});
 
   @override
   Future<Either<Failure, bool>> createUser(AuthCredentials credentials) async {

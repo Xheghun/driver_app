@@ -1,4 +1,6 @@
-class Failure {}
+class Failure {
+  String message;
+}
 
 class ServerFailure extends Failure {
   final String message;

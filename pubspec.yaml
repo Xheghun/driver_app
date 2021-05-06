@@ -24,6 +24,7 @@ dependencies:
   logger: ^1.0.0
   get_it: ^7.1.2
   string_validator: ^0.3.0
+  another_flushbar: ^1.10.20
 
 dev_dependencies:
   flutter_test:

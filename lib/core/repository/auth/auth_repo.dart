@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:driver_app/core/failure/failure.dart';
-import 'package:driver_app/core/models/auth/auth_credentials.dart';
+import 'package:driver_app/core/entities/auth/auth_credentials.dart';
 
 abstract class AuthRepository {
   Future<bool> isUserAuthenticated();

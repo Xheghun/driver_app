@@ -1,4 +1,4 @@
-import 'package:driver_app/core/models/auth/auth_credentials.dart';
+import 'package:driver_app/core/entities/auth/auth_credentials.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthWebService {

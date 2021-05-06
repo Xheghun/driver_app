@@ -2,14 +2,15 @@ import 'package:driver_app/core/data/remote/auth/auth_webservice.dart';
 import 'package:driver_app/core/errors/firebase_error_codes.dart';
 import 'package:driver_app/core/errors/server_error.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:driver_app/core/models/auth/auth_credentials.dart';
+import 'package:driver_app/core/entities/auth/auth_credentials.dart';
 import 'package:logger/logger.dart';
+import 'package:meta/meta.dart';
 
 class AuthWebServiceImpl implements AuthWebService {
   final FirebaseAuth firebaseAuth;
   final Logger logger;
 
-  AuthWebServiceImpl({this.firebaseAuth, this.logger});
+  AuthWebServiceImpl({@required this.firebaseAuth, @required this.logger});
 
   @override
   Future<UserCredential> createUser(AuthCredentials credentials) async {

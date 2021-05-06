@@ -1,4 +1,4 @@
-import 'package:driver_app/core/models/user/user_data.dart';
+import 'package:driver_app/core/entities/user/user_data.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:meta/meta.dart';
 

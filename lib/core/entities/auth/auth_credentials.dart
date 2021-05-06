@@ -3,5 +3,5 @@ class AuthCredentials {
   final String password;
   final String fullname;
 
-  AuthCredentials(this.email, this.fullname, this.password);
+  AuthCredentials({this.email, this.fullname, this.password});
 }

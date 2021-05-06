@@ -29,10 +29,10 @@ class LoginViewModel extends BaseViewModel {
       _message(context, "password is empty");
       return;
     }
-    login(context);
+    _login(context);
   }
 
-  void login(BuildContext context) async {
+  void _login(BuildContext context) async {
     changeState(ViewState.Busy);
     var credentials = AuthCredentials(
         email: _emailController.text.trim(),

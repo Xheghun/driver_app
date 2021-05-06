@@ -10,9 +10,10 @@ import 'package:meta/meta.dart';
 class SignUpViewModel extends BaseViewModel {
   final AuthUseCase authUseCase;
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _fullnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   SignUpViewModel({@required this.authUseCase});
 
@@ -21,13 +22,17 @@ class SignUpViewModel extends BaseViewModel {
   }
 
   void validateInput(BuildContext context) {
-    if (!isTextEmail(_emailController.text.trim())) {
+    if (!isTextEmail(emailController.text.trim())) {
       _message(context, "please provide a valid email");
       return;
-    } else if (_passwordController.text.trim().isEmpty) {
+    } else if (passwordController.text.trim().isEmpty) {
       _message(context, "password is empty");
       return;
-    } else if (isTextNumeric(_fullnameController.text.trim())) {
+    } else if (passwordController.text.trim() !=
+        confirmPasswordController.text.trim()) {
+      _message(context, "password do not match");
+      return;
+    } else if (isTextNumeric(fullnameController.text.trim())) {
       _message(context, "fullname can't contain only numbers");
       return;
     }
@@ -36,18 +41,22 @@ class SignUpViewModel extends BaseViewModel {
 
   void signUp(BuildContext context) async {
     var credentials = AuthCredentials(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-        fullname: _fullnameController.text.trim());
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        fullname: fullnameController.text.trim());
 
     var result = await authUseCase.createUser(credentials);
 
     result.fold((failure) {
       //error
       showFlushBar(context, title: "SignUp Error", message: failure.message);
-    }, (r) {
+    }, (success) {
       //success
-      Navigator.pushNamed(context, MainScreen.routeName);
+      if (success)
+        Navigator.pushNamed(context, MainScreen.routeName);
+      else
+        showFlushBar(context,
+            title: "SignUp Error", message: "something went wrong");
     });
   }
 }

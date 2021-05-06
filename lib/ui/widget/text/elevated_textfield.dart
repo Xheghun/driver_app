@@ -6,11 +6,13 @@ class ElevatedTextField extends StatelessWidget {
   final String hintText;
   final TextInputType keyboardType;
   final bool obscureText;
+  final TextEditingController controller;
 
   const ElevatedTextField(
       {Key key,
       this.elevation = 1,
       this.hintText = "Text",
+      this.controller,
       this.keyboardType,
       this.obscureText = false})
       : super(key: key);
@@ -28,6 +30,7 @@ class ElevatedTextField extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: TextField(
+            controller: controller,
             obscureText: obscureText,
             keyboardType: keyboardType,
             decoration: InputDecoration(

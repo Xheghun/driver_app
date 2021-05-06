@@ -39,6 +39,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   PrimaryButton(
                     text: "CONTINUE",
+                    onPressed: () => model.validateInput(context),
                   )
                 ],
               ),

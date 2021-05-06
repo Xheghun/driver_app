@@ -11,44 +11,41 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
 
-    return ChangeNotifierProvider(
-      create: (_) => LoginViewModel(authUseCase: locator()),
-      child: Consumer<LoginViewModel>(
-        builder: (context, model, child) {
-          return BaseLayout(
-            backgroundColor: Colors.black.withOpacity(0.016),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ElevatedTextField(
-                    hintText: "Email",
-                    controller: model.emailController,
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  ElevatedTextField(
-                    hintText: "Password",
-                    obscureText: true,
-                    controller: model.passwordController,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "FORGOT PASSWORD",
-                          style: theme.textTheme.subtitle2,
-                        )),
-                  ),
-                  PrimaryButton(
-                    text: "CONTINUE",
-                    onPressed: () => model.validateInput(context),
-                  )
-                ],
-              ),
+    return Consumer<LoginViewModel>(
+      builder: (context, model, child) {
+        return BaseLayout(
+          backgroundColor: Colors.black.withOpacity(0.016),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                ElevatedTextField(
+                  hintText: "Email",
+                  controller: model.emailController,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                ElevatedTextField(
+                  hintText: "Password",
+                  obscureText: true,
+                  controller: model.passwordController,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "FORGOT PASSWORD",
+                        style: theme.textTheme.subtitle2,
+                      )),
+                ),
+                PrimaryButton(
+                  text: "CONTINUE",
+                  onPressed: () => model.validateInput(context),
+                )
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

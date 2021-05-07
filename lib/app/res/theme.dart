@@ -9,6 +9,15 @@ class AppTheme {
       primaryColorDark: colorPrimaryDark,
       primaryColorLight: colorPrimaryLight,
       fontFamily: GoogleFonts.roboto().fontFamily,
+      scaffoldBackgroundColor: Colors.white,
+      appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
+      textTheme: TextTheme(
+        subtitle2: GoogleFonts.roboto(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: colorHintText,
+        ),
+      ),
     );
   }
 }
